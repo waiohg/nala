@@ -4,13 +4,74 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
-  <title>replit</title>
-  <link href="style.css" rel="stylesheet" type="text/css" />
+  <title>Katherine VR Scene</title>
+  <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+  <script src="https://unpkg.com/aframe-environment-component/dist/aframe-environment-component.min.js"></script>
+  <script src="script.js"></script>
+
+
+
 </head>
 
+
 <body>
-  Hello world
-  <script src="script.js"></script>
+  <a-scene>
+    <a-assets>
+        <!-- Video -->
+        <video id="videoclip" loop="true" src="tvAssets/hongKong.mp4" crossorigin="anonymous" preload="auto"></video>
+        <img id="play" src="tvAssets/btnPlay.png" preload="auto">
+        <img id="pause" src="tvAssets/btnPause.png" preload="auto">
+        <img id="tv_background" src="tvAssets/tv_background.jpg" preload="auto">
+    </a-assets>
+    <a-entity environment="preset: forest; dressingAmount:200;skyColor:#f20095;groundColor:#bf3df2"></a-entity>
+    <!-- strt of house -->
+    <a-cylinder id="floor" position="0 0 0" radius="7.5" color="purple" height="0.1"></a-cylinder>
+    <a-box id="box1" position="0  1.473  4.90" rotation="0  0  0" scale="10  3  0.2" color="pink"></a-box>
+    <a-box id="box2" position="0  1.473 -4.907" rotation="0 0  0" scale="10  3  0.2" color="pink"></a-box>
+    <a-box id="box3" position="5.049  1.454  -0.008" rotation="0 -90 0" scale="10  3  0.21" color="pink"></a-box>
+    <a-box id="box4" position="-5.049 1.454  -0.008" rotation="0  -90 0" scale="10  3  0.2" color="pink"></a-box>
+    <a-cylinder id="triangle_front" segments-radial="3" position="0  3.874 4.907" rotation="-90  0  0"
+      scale="5.774  0.2  1.8" color="pink"></a-cylinder>
+    <a-cylinder id="triangle_back" segments-radial="3" position="0  3.874 -4.907" rotation="-90  0  0"
+      scale="5.774  0.2  1.8" color="pink"></a-cylinder>
+    <a-box id="roof_right" position="2.580  4.328  0" rotation="28.433  90  0" scale="10.931 0.20  6.110"
+      color="silver"></a-box>
+    <a-box id="roof_left" position="-2.599  4.3321  -0.017" rotation="28.433  -90  0" scale="10.931 0.20  6.130"
+      color="silver"></a-box>
+    <!-- art on walls -->
+    <a-box id="frame1" position="2.910 1.934 -4.788" rotation="0 0 0" scale="2 2 0.2" src=images/frame.png>
+    <a-plane id="art1" src="images/cat.jpg" scale=".7 .7 .5" rotation="0 0 0"
+      position="0.002  0.002  0.519"></a-plane>
+      </a-box> 
+    <a-plane id="art2" src="images/maria.jpg" scale="2.020 2.020 1.800" rotation="0.000 0.000 0.000" position="0.026 4.535 -4.652"></a-plane>
+    <a-plane id="art3" src="images/nala.jpg" scale="2 2 0.050" rotation="0 0 0" position="-2.345 1.934 -4.792"></a-plane>
+
+    <!-- 3d model -->
+    <a-obj-model id="3dModel1" src="images/tinker.obj" mtl="images/obj.mtl" position="0 0 0" rotation="-90 0 0"
+      scale="1 1 1"></a-obj-model>
+
+  <!-- start of tv -->
+    <a-entity>
+
+      <a-video src="#videoclip" position="-3.893 1.6 0" rotation="0 90 0" width="2" height="1.125"></a-video>
+      <!-- TV background -->
+      <a-plane id="videoControls" position="-3.893 0.854 0" scale="2 0.386 1.714" rotation="0 90 0" opacity="1" src="#tv_background">
+        <!-- Play button -->
+        <a-plane id="vidplaybox" src="#play" scale="0.122 0.678 0.122" position="-0.350 0 .01" shader="flat"  transparent="true" videoplayer></a-plane>
+        <!-- Stop button -->
+        <a-plane id="vidpausebox" src="#pause" scale="0.122 0.678 0.122" position="0.350 0 .01" shader="flat"  transparent="true" videopauser></a-plane>
+      </a-plane>
+    </a-entity>
+    <a-entity cursor="rayOrigin: mouse"></a-entity>
+    <!-- Movement-->
+    <!-- Camera + controllers rig -->
+    <a-entity id="rig">
+      <a-camera position="0 1.6 0"></a-camera>
+      <a-entity oculus-touch-controls="hand: left" ></a-entity>
+      <a-entity oculus-touch-controls="hand: right" oculus-thumbstick-controls></a-entity>
+    </a-entity>
+  </a-scene>
+  <script src="https://gftruj.github.io/webzamples/aframe/controls/oculus-thumbstick-controls.js"></script>
 </body>
 
 </html>
